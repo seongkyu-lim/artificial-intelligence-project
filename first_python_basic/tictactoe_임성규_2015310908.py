@@ -4,6 +4,9 @@ import sys
 
 board = [['~' for col in range(3)] for row in range(3)]
 
+global count
+count = 0
+
 
 def win_check(board):
     if board[1][1] == 'X':
@@ -56,6 +59,7 @@ def win_check(board):
             else:
                 print('loss')
                 sys.exit(0)
+# 승리여부를 체크하여 출력하고 게임종료하는 함수
 
 
 def print_board(list):
@@ -64,9 +68,11 @@ def print_board(list):
         for j in i:
             print(j, end=' ')
         print()
+# 진행판 출력함수
 
 
 def tic_tac_toe(x, y, z):
+    global count
 
     if z == 0:
 
@@ -80,6 +86,10 @@ def tic_tac_toe(x, y, z):
             print_board(board)
             print(' ')
             win_check(board)
+            count += 1
+            if count == 9:
+                print('tie')
+                sys.exit(0)
 
     elif z == 1:
 
@@ -94,6 +104,11 @@ def tic_tac_toe(x, y, z):
             print_board(board)
             print(' ')
             win_check(board)
+            count += 1
+            if count == 9:
+                print('tie')
+                sys.exit(0)
+# 말을 놓는 것을 실행하는 함수
 
 
 order_num = randint(0, 1)
@@ -103,46 +118,34 @@ if order_num == 0:
 else:
     user_piece = 'O'
     computer_piece = 'X'
-
-
-#count = 0
+# 랜덤으로 순서 결정.
 
 if user_piece == 'X':
 
     while True:
-        # if count == 9:
-        # print('tie')
-        else:
-            x, y = map(int, input().split())
-            print(' ')
-            tic_tac_toe(x, y, 0)
-            #count += 1
+        x, y = map(int, input().split())
+        print(' ')
+        tic_tac_toe(x, y, 0)
 
-            x = randint(0, 2)
-            y = randint(0, 2)
-            tic_tac_toe(x, y, 1)
-            #count += 1
+        x = randint(0, 2)
+        y = randint(0, 2)
+        tic_tac_toe(x, y, 1)
 
 else:
     while True:
-        # if count == 9:
-        # print('tie')
-        else:
-            x = randint(0, 2)
-            y = randint(0, 2)
-            tic_tac_toe(x, y, 1)
-            #count += 1
+        x = randint(0, 2)
+        y = randint(0, 2)
+        tic_tac_toe(x, y, 1)
 
-            x, y = map(int, input().split())
-            print(' ')
-            tic_tac_toe(x, y, 0)
-            #count += 1
+        x, y = map(int, input().split())
+        print(' ')
+        tic_tac_toe(x, y, 0)
 
-
-# user - 0, computer - 1 // X ,  O
 
 '''
-문제점 
+tic-tac-toe 함수로 유저 혹은 컴퓨터가 특정 위치에 말을 놓도록 하였습니다.
+말을 놓고나면 win_check함수로 게임종료여부를 체크하고 누군가가 이겼다면 게임을 종료하도록하였습니다.
+print_board라는 진행상황 출력 함수를 따로 만들어 말을 놓을 때마다 현재 진행상황이 출력되도록 하였습니다.
+말을 놓고 win_check로 결판이 나지않았을 때, 총 9번 두었다면 무승부로 게임을 종료 시켰습지
 
-무승부 안됨.
 '''
