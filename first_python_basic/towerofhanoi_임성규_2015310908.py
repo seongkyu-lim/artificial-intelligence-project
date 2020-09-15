@@ -67,7 +67,7 @@ def hanoi(n, A_rod, C_rod, B_rod):
     print_tower(tower)
     print(' ')
     hanoi(n-1, C_rod, A_rod, B_rod)
-# 재귀를 이용하여
+# 재귀를 이용하여 하노이함수 생성
 
 
 tower = board = [[0 for col in range(3)] for row in range(3)]
